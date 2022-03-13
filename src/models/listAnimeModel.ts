@@ -1,18 +1,25 @@
-interface ListAnimeModel {
-  id: number;
+export default interface ListAnimeModel {
+  code: number;
+  message: string;
+  ttl: number;
+  data: dataList;
+}
+
+interface dataList {
+  cards: card[];
+}
+
+interface card {
+  card_type: string;
   title: string;
-  image_url: string;
-  type: string;
-  episodes: number;
-  score: number;
-  synopsis: string;
-  start_date: string;
-  end_date: string;
-  members: number;
-  favorites: number;
-  rated: string;
-  popularity: number;
-  status: string;
-  genres: string[];
-  studios: string[];
+  cover: string;
+  view: string;
+  styles: string;
+  season_id: number;
+  episode_id: number;
+  index_show: string;
+  label: number;
+  rank_info: string;
+  view_history: string;
+  pub_time_text: string;
 }
