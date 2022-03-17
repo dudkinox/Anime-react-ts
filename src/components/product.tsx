@@ -9,8 +9,9 @@ export default function Product() {
   useEffect(() => {
     ListAnimeService.getListAnime("1", "10", "web", "th_TH").then((res) => {
       setListAnime(res.data);
+      console.log(res.data);
     });
-  }, [listAnime, setListAnime]);
+  }, [listAnime]);
 
   return (
     <section className="product spad">
@@ -33,7 +34,7 @@ export default function Product() {
                 </div>
               </div>
               <div className="row">
-                {listAnime?.data.cards.map((item, index) => (
+                {/* {listAnime?.data.cards.map((item, index) => (
                   <div className="col-lg-4 col-md-6 col-sm-6">
                     <div className="product__item">
                       <div className="product__item__pic set-bg" data-setbg="">
@@ -59,7 +60,7 @@ export default function Product() {
                       </div>
                     </div>
                   </div>
-                ))}
+                ))} */}
               </div>
             </div>
             <div className="popular__product">

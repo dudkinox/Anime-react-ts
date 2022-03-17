@@ -1,9 +1,12 @@
 import axios from "axios";
 
-const axiosInstance = axios.create({
-  baseURL: "https://api.bilibili.tv/intl/gateway/web/v2/ogv/index",
-  headers: {
+axios.interceptors.request.use(async (config) => {
+  config.baseURL = "http://localhost:1412";
+  config.headers = {
     "Content-Type": "application/json",
-  },
+    "Access-Control-Allow-Origin": "*",
+  };
+
+  return config;
 });
-export default axiosInstance;
+export const httpClient = axios;
