@@ -1,7 +1,7 @@
 import axios from "axios";
 
 axios.interceptors.request.use(async (config) => {
-  config.baseURL = "http://localhost:1412";
+  config.baseURL = "https://api-anime-bilibilli.herokuapp.com";
   config.headers = {
     "Content-Type": "application/json",
     "Access-Control-Allow-Origin": "*",
