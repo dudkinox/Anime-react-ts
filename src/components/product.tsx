@@ -1,6 +1,17 @@
+import { useEffect, useState } from "react";
 import TopTen from "../features/TopTen";
+import ListAnimeModel from "../models/listAnimeModel";
+import ListAnimeService from "../services/listAnimeService";
 
 export default function Product() {
+  const [listAnime, setListAnime] = useState<ListAnimeModel>();
+
+  useEffect(() => {
+    ListAnimeService.getListAnime("1", "10", "web", "th_TH").then((res) => {
+      setListAnime(res.data);
+    });
+  }, [listAnime, setListAnime]);
+
   return (
     <section className="product spad">
       <div className="container">
@@ -14,37 +25,41 @@ export default function Product() {
                   </div>
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-4">
-                  <div className="btn__all">
-                    <a href="#" className="primary-btn">
+                  <div className="btn__all text-white">
+                    <a href="#all">
                       ดูทั้งหมด <span className="arrow_right" />
                     </a>
                   </div>
                 </div>
               </div>
               <div className="row">
-                <div className="col-lg-4 col-md-6 col-sm-6">
-                  <div className="product__item">
-                    <div className="product__item__pic set-bg" data-setbg="">
-                      <img src="img/trending/trend-1.jpg" alt="" />
-                      <div className="ep">18 / 18</div>
-                      <div className="comment">
-                        <i className="fa fa-comments" /> 11
+                {listAnime?.data.cards.map((item, index) => (
+                  <div className="col-lg-4 col-md-6 col-sm-6">
+                    <div className="product__item">
+                      <div className="product__item__pic set-bg" data-setbg="">
+                        <img src="img/trending/trend-1.jpg" alt="" />
+                        <div className="ep">18 / 18</div>
+                        <div className="comment">
+                          <i className="fa fa-comments" /> 11
+                        </div>
+                        <div className="view">
+                          <i className="fa fa-eye" /> 9141
+                        </div>
                       </div>
-                      <div className="view">
-                        <i className="fa fa-eye" /> 9141
+                      <div className="product__item__text">
+                        <ul>
+                          <li>Active</li>
+                          <li>Movie</li>
+                        </ul>
+                        <h5>
+                          <a href="#name">
+                            The Seven Deadly Sins: Wrath of the Gods
+                          </a>
+                        </h5>
                       </div>
-                    </div>
-                    <div className="product__item__text">
-                      <ul>
-                        <li>Active</li>
-                        <li>Movie</li>
-                      </ul>
-                      <h5>
-                        <a href="#">The Seven Deadly Sins: Wrath of the Gods</a>
-                      </h5>
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
             </div>
             <div className="popular__product">
@@ -56,7 +71,7 @@ export default function Product() {
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-4">
                   <div className="btn__all">
-                    <a href="#" className="primary-btn">
+                    <a href="#all-top" className="primary-btn">
                       ดูทั้งหมด <span className="arrow_right" />
                     </a>
                   </div>
