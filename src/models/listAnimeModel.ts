@@ -1,15 +1,4 @@
 export default interface ListAnimeModel {
-  code: number;
-  message: string;
-  ttl: number;
-  data: dataList;
-}
-
-interface dataList {
-  cards: card[];
-}
-
-interface card {
   card_type: string;
   title: string;
   cover: string;

@@ -8,7 +8,7 @@ const ListAnimeService = {
     platform: string,
     s_locale: string
   ) => {
-    return httpClient.get<ListAnimeModel>(
+    return httpClient.get<ListAnimeModel[]>(
       `/bypass?page=${page}&pagesize=${pagesize}&platform=${platform}&s_locale=${s_locale}`
     );
   },
