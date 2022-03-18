@@ -3,7 +3,7 @@ import Header from "../../components/header";
 import Loading from "../../components/loading";
 import Product from "../../components/product";
 
-export default function HomePage() {
+export default function Categories() {
   return (
     <>
       <Loading />

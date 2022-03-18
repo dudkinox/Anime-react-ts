@@ -1,4 +1,59 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Header() {
+  const navigate = useNavigate();
+  const category = [
+    {
+      name: "ยาโอย",
+      value: 1,
+    },
+    {
+      name: "แฟนตาซี",
+      value: 2,
+    },
+    {
+      name: "ดราม่า",
+      value: 3,
+    },
+    {
+      name: "ต่อสู้",
+      value: 4,
+    },
+    {
+      name: "โรแมนติก",
+      value: 5,
+    },
+    {
+      name: "Sci-fi/ไซ-ไฟ",
+      value: 6,
+    },
+    {
+      name: "ผจญภัย",
+      value: 7,
+    },
+    {
+      name: "ประวัติศาสตร์",
+      value: 8,
+    },
+    {
+      name: "ตลก",
+      value: 9,
+    },
+    {
+      name: "ชีวิตประจำวัน",
+      value: 10,
+    },
+    {
+      name: "ดนตรี",
+      value: 11,
+    },
+    {
+      name: "โรงเรียน",
+      value: 12,
+    },
+  ];
+  const goCategory = () => {};
+
   return (
     <header className="header">
       <div className="container">
@@ -19,27 +74,16 @@ export default function Header() {
                   </li>
                   <li>
                     <a href="./categories.html">
-                      Categories <span className="arrow_carrot-down" />
+                      หมวดหมู่ <span className="arrow_carrot-down" />
                     </a>
                     <ul className="dropdown">
-                      <li>
-                        <a href="./categories.html">Categories</a>
-                      </li>
-                      <li>
-                        <a href="./anime-details.html">Anime Details</a>
-                      </li>
-                      <li>
-                        <a href="./anime-watching.html">Anime Watching</a>
-                      </li>
-                      <li>
-                        <a href="./blog-details.html">Blog Details</a>
-                      </li>
-                      <li>
-                        <a href="./signup.html">Sign Up</a>
-                      </li>
-                      <li>
-                        <a href="./login.html">Login</a>
-                      </li>
+                      {category.map((item) => {
+                        return (
+                          <li>
+                            <a href={`#${item.value}`}>{item.name}</a>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </li>
                   <li>

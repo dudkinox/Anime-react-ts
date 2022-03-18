@@ -5,16 +5,21 @@ import Header from "./components/header";
 import Loading from "./components/loading";
 import Product from "./components/product";
 import HomePage from "./pages/home";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
 
 function App() {
   return (
-    <>
-      <Loading />
-      <Header />
-      <HomePage />
-      <Product />
-      <Footer />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
