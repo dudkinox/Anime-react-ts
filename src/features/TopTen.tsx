@@ -10,12 +10,12 @@ export default function TopTen() {
   }, []);
 
   function GetDataShowTen() {
-    ListAnimeService.getListAnime("1", "50", "web", "th_TH")
+    ListAnimeService.getListAnime("1", "30", "web", "th_TH")
       .then((res) => {
         const view = [];
         for (var i = 0; i < res.data.length; i++) {
           var split = res.data[i].view.split(" ");
-          var check = split[0].toLowerCase();
+          var check = split[0];
           var change = numeral(check);
           const data = {
             detail: res.data[i],
@@ -58,6 +58,7 @@ export default function TopTen() {
               (item: ListAnimeModel, index) => (
                 console.log(item.cover),
                 (
+                  
                   <div className="filter__gallery" key={index}>
                     <div
                       
