@@ -5,51 +5,51 @@ export default function Header() {
   const category = [
     {
       name: "ยาโอย",
-      value: 1,
+      value: 0,
     },
     {
       name: "แฟนตาซี",
-      value: 2,
+      value: 1,
     },
     {
       name: "ดราม่า",
-      value: 3,
+      value: 2,
     },
     {
       name: "ต่อสู้",
-      value: 4,
+      value: 3,
     },
     {
       name: "โรแมนติก",
-      value: 5,
+      value: 4,
     },
     {
       name: "Sci-fi/ไซ-ไฟ",
-      value: 6,
+      value: 5,
     },
     {
       name: "ผจญภัย",
-      value: 7,
+      value: 6,
     },
     {
       name: "ประวัติศาสตร์",
-      value: 8,
+      value: 7,
     },
     {
       name: "ตลก",
-      value: 9,
+      value: 8,
     },
     {
       name: "ชีวิตประจำวัน",
-      value: 10,
+      value: 9,
     },
     {
       name: "ดนตรี",
-      value: 11,
+      value: 10,
     },
     {
       name: "โรงเรียน",
-      value: 12,
+      value: 11,
     },
   ];
   const goCategory = () => {};
