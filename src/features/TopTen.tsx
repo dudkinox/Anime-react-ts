@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import ListAnimeModel from "../models/listAnimeModel";
-import ListAnimeService from "../services/listAnimeService";
-import { LinkPreview } from '@dhaiwat10/react-link-preview';
+import GalleryService from "../services/listAnimeService";
 
 export default function TopTen() {
   const [listAnime, setListAnime] = useState<ListAnimeModel[]>();
@@ -11,7 +10,7 @@ export default function TopTen() {
   }, []);
 
   function GetDataShowTen() {
-    ListAnimeService.getListAnime("1", "30", "web", "th_TH")
+    GalleryService.ListAnimeService.getListAnime("1", "30", "web", "th_TH")
       .then((res) => {
         const view = [];
         for (var i = 0; i < res.data.length; i++) {
@@ -56,31 +55,25 @@ export default function TopTen() {
             <li data-filter=".month">Month</li>
             <li data-filter=".years">Years</li>
           </ul>
-            {listAnime?.map(
-              (item: ListAnimeModel, index) => (
-                // console.log(item.cover),
-                (
-                  
-                  <div className="filter__gallery" key={index}>
-                    <div
-                      
-                      className="product__sidebar__view__item set-bg mix day years"
-                      data-setbg={item.cover}
-                    >
-                       {/* <LinkPreview url={item.cover}  />; */}
-                      <img src={item.cover} alt="" />
-                      <div className="ep">{item.episode_id}</div>
-                      <div className="view">
-                        <i className="fa fa-eye" /> {item.view}
-                      </div>
-                      <h5>
-                        <a href="#">{item.title}</a>
-                      </h5>
-                    </div>
-                  </div>
-                )
-              )
-            )}
+          {listAnime?.map((item: ListAnimeModel, index) => (
+            // console.log(item.cover),
+            <div className="filter__gallery" key={index}>
+              <div
+                className="product__sidebar__view__item set-bg mix day years"
+                data-setbg={item.cover}
+              >
+                {/* <LinkPreview url={item.cover}  />; */}
+                <img src={item.cover} alt="" />
+                <div className="ep">{item.episode_id}</div>
+                <div className="view">
+                  <i className="fa fa-eye" /> {item.view}
+                </div>
+                <h5>
+                  <a href="#">{item.title}</a>
+                </h5>
+              </div>
+            </div>
+          ))}
         </div>
         <div className="product__sidebar__comment">
           <div className="section-title">

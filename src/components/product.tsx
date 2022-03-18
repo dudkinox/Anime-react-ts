@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
 import TopTen from "../features/TopTen";
 import ListAnimeModel from "../models/listAnimeModel";
-import ListAnimeService from "../services/listAnimeService";
+import GalleryService from "../services/listAnimeService";
 
 export default function Product() {
   const [listAnime, setListAnime] = useState<ListAnimeModel[]>();
 
   useEffect(() => {
-    ListAnimeService.getListAnime("1", "10", "web", "th_TH").then((res) => {
+    GalleryService.ListAnimeService.getListAnime(
+      "1",
+      "10",
+      "web",
+      "th_TH"
+    ).then((res) => {
       setListAnime(res.data);
       console.log(res.data);
     });

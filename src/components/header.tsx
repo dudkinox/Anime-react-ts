@@ -80,7 +80,9 @@ export default function Header() {
                       {category.map((item) => {
                         return (
                           <li>
-                            <a href={`#${item.value}`}>{item.name}</a>
+                            <a href={`/categories#${item.value}`}>
+                              {item.name}
+                            </a>
                           </li>
                         );
                       })}
