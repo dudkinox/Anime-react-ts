@@ -60,7 +60,7 @@ export default function Header() {
         <div className="row">
           <div className="col-lg-2">
             <div className="header__logo">
-              <a href="./index.html">
+              <a href="/index.html">
                 <img src="img/logo.png" alt="" />
               </a>
             </div>
@@ -70,10 +70,10 @@ export default function Header() {
               <nav className="header__menu mobile-menu">
                 <ul>
                   <li className="active">
-                    <a href="./index.html">Homepage</a>
+                    <a href="/">Homepage</a>
                   </li>
                   <li>
-                    <a href="./categories.html">
+                    <a href="/categories">
                       หมวดหมู่ <span className="arrow_carrot-down" />
                     </a>
                     <ul className="dropdown">

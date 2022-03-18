@@ -12,12 +12,14 @@ import {
   Navigate,
   Outlet,
 } from "react-router-dom";
+import Categories from "./pages/categories";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/categories" element={<Categories />} />
       </Routes>
     </BrowserRouter>
   );
