@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ListAnimeModel from "../models/listAnimeModel";
 import ListAnimeService from "../services/listAnimeService";
+import { LinkPreview } from '@dhaiwat10/react-link-preview';
 
 export default function TopTen() {
   const [listAnime, setListAnime] = useState<ListAnimeModel[]>();
@@ -15,7 +16,8 @@ export default function TopTen() {
         const view = [];
         for (var i = 0; i < res.data.length; i++) {
           var split = res.data[i].view.split(" ");
-          var check = split[0];
+          // var check = split[0];
+          var check = split[0].toLowerCase();
           var change = numeral(check);
           const data = {
             detail: res.data[i],
@@ -56,7 +58,7 @@ export default function TopTen() {
           </ul>
             {listAnime?.map(
               (item: ListAnimeModel, index) => (
-                console.log(item.cover),
+                // console.log(item.cover),
                 (
                   
                   <div className="filter__gallery" key={index}>
@@ -65,6 +67,7 @@ export default function TopTen() {
                       className="product__sidebar__view__item set-bg mix day years"
                       data-setbg={item.cover}
                     >
+                       {/* <LinkPreview url={item.cover}  />; */}
                       <img src={item.cover} alt="" />
                       <div className="ep">{item.episode_id}</div>
                       <div className="view">
