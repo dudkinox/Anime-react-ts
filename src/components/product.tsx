@@ -43,24 +43,25 @@ export default function Product() {
                   <div className="col-lg-4 col-md-6 col-sm-6">
                     <div className="product__item">
                       <div className="product__item__pic set-bg" data-setbg="">
-                        <img src="img/trending/trend-1.jpg" alt="" />
+                        <img
+                          src="https://pic.bstarstatic.com/ogv/e7ecffacec5226eba54781b5847de6cb577a673a.png"
+                          alt=""
+                        />
                         <div className="ep">18 / 18</div>
-                        <div className="comment">
-                          <i className="fa fa-comments" /> 11
-                        </div>
                         <div className="view">
-                          <i className="fa fa-eye" /> 9141
+                          <i className="fa fa-eye" /> {item.view}
                         </div>
                       </div>
                       <div className="product__item__text">
                         <ul>
-                          <li>Active</li>
-                          <li>Movie</li>
+                          <li>
+                            {item.index_show === "เสร็จแล้ว"
+                              ? "จบแล้ว"
+                              : item.index_show}
+                          </li>
                         </ul>
                         <h5>
-                          <a href="#name">
-                            The Seven Deadly Sins: Wrath of the Gods
-                          </a>
+                          <a href="#name">{item.title}</a>
                         </h5>
                       </div>
                     </div>

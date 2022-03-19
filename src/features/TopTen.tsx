@@ -15,7 +15,6 @@ export default function TopTen() {
         const view = [];
         for (var i = 0; i < res.data.length; i++) {
           var split = res.data[i].view.split(" ");
-          // var check = split[0];
           var check = split[0].toLowerCase();
           var change = numeral(check);
           const data = {
@@ -58,11 +57,7 @@ export default function TopTen() {
           {listAnime?.map((item: ListAnimeModel, index) => (
             // console.log(item.cover),
             <div className="filter__gallery" key={index}>
-              <div
-                className="product__sidebar__view__item set-bg mix day years"
-                data-setbg={item.cover}
-              >
-                {/* <LinkPreview url={item.cover}  />; */}
+              <div className="product__sidebar__view__item set-bg mix day years">
                 <img src={item.cover} alt="" />
                 <div className="ep">{item.episode_id}</div>
                 <div className="view">

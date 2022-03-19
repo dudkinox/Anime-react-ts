@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Footer from "../../components/footer";
 import Header from "../../components/header";
 import Loading from "../../components/loading";
-import Product from "../../components/product";
 import ListAnimeModel from "../../models/listAnimeModel";
 import GalleryService from "../../services/listAnimeService";
 export default function Categories() {
