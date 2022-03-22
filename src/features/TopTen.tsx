@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ListAnimeModel from "../models/listAnimeModel";
 import GalleryService from "../services/listAnimeService";
+import Moment from "moment";
 
 interface TopTenProps {
   bypassImages(url: string): string;
@@ -8,6 +9,14 @@ interface TopTenProps {
 
 export default function TopTen({ bypassImages }: TopTenProps) {
   const [listAnime, setListAnime] = useState<ListAnimeModel[]>();
+  const [dateNow, setDateNow] = useState<string>("");
+
+  useEffect(() => {
+    Moment.locale("en");
+    const dt = Date();
+    setDateNow(Moment(dt).format("DD/MM/YYYY"));
+  }, []);
+
   var numeral = require("numeral");
   useEffect(() => {
     GetDataShowTen();
@@ -52,11 +61,8 @@ export default function TopTen({ bypassImages }: TopTenProps) {
           </div>
           <ul className="filter__controls">
             <li className="active" data-filter="*">
-              Day
+              {dateNow}
             </li>
-            <li data-filter=".week">Week</li>
-            <li data-filter=".month">Month</li>
-            <li data-filter=".years">Years</li>
           </ul>
           {listAnime?.map((item: ListAnimeModel, index) => (
             <div className="filter__gallery" key={index}>

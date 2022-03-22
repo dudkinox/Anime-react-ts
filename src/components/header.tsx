@@ -1,7 +1,4 @@
-import { useNavigate } from "react-router-dom";
-
 export default function Header() {
-  const navigate = useNavigate();
   const category = [
     {
       name: "ยาโอย",
@@ -52,7 +49,6 @@ export default function Header() {
       value: 11,
     },
   ];
-  const goCategory = () => {};
 
   return (
     <header className="header">
