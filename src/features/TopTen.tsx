@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import ListAnimeModel from "../models/listAnimeModel";
 import GalleryService from "../services/listAnimeService";
 
-export default function TopTen() {
+interface TopTenProps {
+  bypassImages(url: string): string;
+}
+
+export default function TopTen({ bypassImages }: TopTenProps) {
   const [listAnime, setListAnime] = useState<ListAnimeModel[]>();
   var numeral = require("numeral");
   useEffect(() => {
@@ -55,10 +59,9 @@ export default function TopTen() {
             <li data-filter=".years">Years</li>
           </ul>
           {listAnime?.map((item: ListAnimeModel, index) => (
-            // console.log(item.cover),
             <div className="filter__gallery" key={index}>
               <div className="product__sidebar__view__item set-bg mix day years">
-                <img src={item.cover} alt="" />
+                <img src={bypassImages(item.cover)} alt="" />
                 <div className="ep">{item.episode_id}</div>
                 <div className="view">
                   <i className="fa fa-eye" /> {item.view}

@@ -88,12 +88,6 @@ export default function Header() {
                       })}
                     </ul>
                   </li>
-                  <li>
-                    <a href="./blog.html">Our Blog</a>
-                  </li>
-                  <li>
-                    <a href="#">Contacts</a>
-                  </li>
                 </ul>
               </nav>
             </div>
