@@ -6,6 +6,11 @@ import GalleryService from "../services/listAnimeService";
 export default function Product() {
   const [listAnime, setListAnime] = useState<ListAnimeModel[]>();
 
+  const bypassImages = (url: string) => {
+    const formatUrl = url.split("https://pic.bstarstatic.com/ogv/");
+    return "assets/" + formatUrl[1];
+  };
+
   useEffect(() => {
     GalleryService.ListAnimeService.getListAnime(
       "1",
@@ -43,10 +48,7 @@ export default function Product() {
                   <div className="col-lg-4 col-md-6 col-sm-6">
                     <div className="product__item">
                       <div className="product__item__pic set-bg" data-setbg="">
-                        <img
-                          src="https://pic.bstarstatic.com/ogv/e7ecffacec5226eba54781b5847de6cb577a673a.png"
-                          alt=""
-                        />
+                        <img src={bypassImages(item.cover)} alt="" />
                         <div className="ep">18 / 18</div>
                         <div className="view">
                           <i className="fa fa-eye" /> {item.view}
