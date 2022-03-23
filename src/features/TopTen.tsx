@@ -82,7 +82,9 @@ export default function TopTen({ bypassImages }: TopTenProps) {
                     backgroundColor: Themes.buttonshow,
                   }}
                 >
-                  <a href="#">{item.title}</a>
+                  <a href={`https://www.bilibili.tv/th/play/${item.season_id}`}>
+                    {item.title}
+                  </a>
                 </h5>
               </div>
             </div>
