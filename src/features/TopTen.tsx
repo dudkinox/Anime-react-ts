@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ListAnimeModel from "../models/listAnimeModel";
 import GalleryService from "../services/listAnimeService";
 import Moment from "moment";
+import { Themes } from "../themes/color";
 
 interface TopTenProps {
   bypassImages(url: string): string;
@@ -55,7 +56,7 @@ export default function TopTen({ bypassImages }: TopTenProps) {
   return (
     <div className="col-lg-4 col-md-6 col-sm-8">
       <div className="product__sidebar">
-        <div className="product__sidebar__view">
+        <div className="product__sidebar__view" style={{ marginBottom: 310 }}>
           <div className="section-title">
             <h5>10 อันดับ</h5>
           </div>
@@ -66,13 +67,21 @@ export default function TopTen({ bypassImages }: TopTenProps) {
           </ul>
           {listAnime?.map((item: ListAnimeModel, index) => (
             <div className="filter__gallery" key={index}>
-              <div className="product__sidebar__view__item set-bg mix day years">
+              <div
+                className="product__sidebar__view__item set-bg mix day years"
+                style={{ marginBottom: 300 }}
+              >
                 <img src={bypassImages(item.cover)} alt="" />
                 <div className="ep">{item.episode_id}</div>
                 <div className="view">
                   <i className="fa fa-eye" /> {item.view}
                 </div>
-                <h5>
+                <h5
+                  style={{
+                    marginBlock: -320,
+                    backgroundColor: Themes.buttonshow,
+                  }}
+                >
                   <a href="#">{item.title}</a>
                 </h5>
               </div>
