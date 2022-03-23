@@ -73,10 +73,10 @@ export default function Header() {
                       หมวดหมู่ <span className="arrow_carrot-down" />
                     </a>
                     <ul className="dropdown">
-                      {category.map((item) => {
+                      {category.map((item, index) => {
                         return (
-                          <li>
-                            <a href={`/categories#${item.value}`}>
+                          <li key={index}>
+                            <a href={`/categories/${item.value}`}>
                               {item.name}
                             </a>
                           </li>

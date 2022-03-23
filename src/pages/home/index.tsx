@@ -6,10 +6,7 @@ import Product from "../../components/product";
 export default function HomePage() {
   return (
     <>
-      <Loading />
-      <Header />
       <Product />
-      <Footer />
     </>
   );
 }

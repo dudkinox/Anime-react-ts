@@ -19,7 +19,7 @@ export default function Product() {
       "th_TH"
     ).then((res) => {
       setListAnime(res.data);
-      console.log(res.data);
+      // console.log(res.data);
     });
   }, []);
 
@@ -45,7 +45,7 @@ export default function Product() {
               </div>
               <div className="row">
                 {listAnime?.map((item, index) => (
-                  <div className="col-lg-4 col-md-6 col-sm-6">
+                  <div className="col-lg-4 col-md-6 col-sm-6" key={index}>
                     <div className="product__item">
                       <div className="product__item__pic set-bg" data-setbg="">
                         <img src={bypassImages(item.cover)} alt="" />
