@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Header() {
+  const navigate = useNavigate();
   const category = [
     {
       name: "ยาโอย",
@@ -50,6 +53,10 @@ export default function Header() {
     },
   ];
 
+  const goToCategory = (href: number) => {
+    navigate("categories/" + href.toString());
+  };
+
   return (
     <header className="header">
       <div className="container">
@@ -76,7 +83,10 @@ export default function Header() {
                       {category.map((item, index) => {
                         return (
                           <li key={index}>
-                            <a href={`/categories/${item.value}`}>
+                            <a
+                              href={`${item.value}`}
+                              onClick={() => goToCategory(item.value)}
+                            >
                               {item.name}
                             </a>
                           </li>
