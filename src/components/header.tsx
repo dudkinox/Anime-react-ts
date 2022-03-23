@@ -56,7 +56,7 @@ export default function Header() {
         <div className="row">
           <div className="col-lg-2">
             <div className="header__logo">
-              <a href="/index.html">
+              <a href="/">
                 <img src="img/logo.png" alt="" />
               </a>
             </div>
