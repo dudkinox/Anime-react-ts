@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import TopTen from "../features/TopTen";
 import ListAnimeModel from "../models/listAnimeModel";
 import GalleryService from "../services/listAnimeService";
+import { PaginationContainer } from "./Pagination";
+import { Pagination, PaginationComponent } from "./PaginationUse";
 
 export default function Product() {
   const [listAnime, setListAnime] = useState<ListAnimeModel[]>();
@@ -73,7 +75,11 @@ export default function Product() {
                     </div>
                   </div>
                 ))}
+                <div></div>
               </div>
+              {/* <PaginationComponent page={0} totalPages={0} handlePagination={}
+                 /> */}
+              <h5>5555</h5>
             </div>
           </div>
           <TopTen bypassImages={bypassImages} />
