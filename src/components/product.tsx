@@ -17,7 +17,6 @@ export default function Product() {
   };
 
   const handleNextPage = (nextPage: number) => {
-    // console.log(nextPage);
     setPage((nextPage) => nextPage + 1);
   };
 
@@ -36,7 +35,6 @@ export default function Product() {
       )
         .then((res) => {
           setListAnime(res.data);
-          // console.log(res.data);
         })
         .catch((e: Error) => {
           console.log(e);
@@ -135,7 +133,7 @@ export default function Product() {
                 ))}
                 <div></div>
               </div>
-              {listAnime?.length.toString() == entries.toString() ? (
+              {listAnime?.length.toString() === entries.toString() ? (
                 <Pagination
                   totalPages={totalPages}
                   currentPage={page}

@@ -100,10 +100,14 @@ export default function Header() {
           </div>
           <div className="col-lg-2">
             <div className="header__right">
+              <button>
+                sdfsdf
+                {/* {language === 'en' ? 'English' : 'Danish'} */}
+              </button>
               <a href="#" className="search-switch">
                 <span className="icon_search" />
               </a>
-              <a href="./login.html">
+              <a href="/">
                 <span className="icon_profile" />
               </a>
             </div>
