@@ -32,7 +32,6 @@ export default function Categories() {
   return (
     <>
       <Loading />
-      <Header />
       <section className="product spad">
         <div className="container">
           <div className="row">

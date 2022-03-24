@@ -46,7 +46,7 @@ export default function Product({ local }: Props) {
     };
 
     fetchData();
-  }, [page, entries]);
+  }, [page, entries, local]);
 
   const optionSelect = [
     {
