@@ -1,0 +1,43 @@
+.pagination-button-wrapper {
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+.separator {
+  width: 1rem;
+  margin: 0 0.25rem;
+}
+
+.pagination-page-info {
+  color: white;
+  margin: 0 0.25rem;
+}
+
+.pagination-button {
+  border: none;
+  height: 2rem;
+  width: 2rem;
+  margin: 0 0.25rem;
+  border-radius: 50%;
+  font-weight: 600;
+}
+.pagination-button:hover {
+  text-decoration: underline;
+}
+.pagination-button:focus {
+  outline: 0;
+}
+
+.active {
+  background-color: black;
+  color: white;
+}
+.sides {
+  box-shadow: transparent 0px 0px 0px 1px, transparent 0px 0px 0px 4px,
+    rgba(0, 0, 0, 0.18) 0px 2px 4px;
+}
+.sides:hover {
+  text-decoration: none;
+  box-shadow: transparent 0px 0px 0px 1px, transparent 0px 0px 0px 4px,
+    rgba(0, 0, 0, 0.12) 0px 6px 16px;
+}

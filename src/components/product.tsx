@@ -1,12 +1,25 @@
 import { useEffect, useState } from "react";
+import { Col, Form, Row } from "react-bootstrap";
 import TopTen from "../features/TopTen";
+
 import ListAnimeModel from "../models/listAnimeModel";
 import GalleryService from "../services/listAnimeService";
-import { PaginationContainer } from "./Pagination";
-import { Pagination, PaginationComponent } from "./PaginationUse";
+import Pagination from "./pagination/Pagination";
 
 export default function Product() {
   const [listAnime, setListAnime] = useState<ListAnimeModel[]>();
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(3);
+  const [entries, setEntries] = useState("");
+
+  const handlePrevPage = (prevPage: number) => {
+    setPage((prevPage) => prevPage - 1);
+  };
+
+  const handleNextPage = (nextPage: number) => {
+    // console.log(nextPage);
+    setPage((nextPage) => nextPage + 1);
+  };
 
   const bypassImages = (url: string) => {
     const formatUrl = url.split("https://pic.bstarstatic.com/ogv/");
@@ -14,16 +27,39 @@ export default function Product() {
   };
 
   useEffect(() => {
-    GalleryService.ListAnimeService.getListAnime(
-      "1",
-      "10",
-      "web",
-      "th_TH"
-    ).then((res) => {
-      setListAnime(res.data);
-      // console.log(res.data);
-    });
-  }, []);
+    const fetchData = async () => {
+      GalleryService.ListAnimeService.getListAnime(
+        `${page}`,
+        `${entries}`,
+        "web",
+        "th_TH"
+      )
+        .then((res) => {
+          setListAnime(res.data);
+          // console.log(res.data);
+        })
+        .catch((e: Error) => {
+          console.log(e);
+        });
+    };
+
+    fetchData();
+  }, [page, entries]);
+
+  const optionSelect = [
+    {
+      value: 10,
+    },
+    {
+      value: 25,
+    },
+    {
+      value: 50,
+    },
+    {
+      value: 100,
+    },
+  ];
 
   return (
     <section className="product spad">
@@ -39,9 +75,31 @@ export default function Product() {
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-4">
                   <div className="btn__all text-white">
-                    <a href="#all">
-                      ดูทั้งหมด <span className="arrow_right" />
-                    </a>
+                    <Row>
+                      <Col xs={6}>
+                        <Form.Group>
+                          <Form.Control
+                            as="select"
+                            onChange={(e) => setEntries(e.target.value)}
+                            value={entries}
+                            className="bg-dark text-white"
+                          >
+                            {optionSelect.map((option, index) => {
+                              return (
+                                <option value={option.value} key={index}>
+                                  {option.value}
+                                </option>
+                              );
+                            })}
+                          </Form.Control>
+                        </Form.Group>
+                      </Col>
+                      <Col xs={6}>
+                        <a href="#all">
+                          ดูทั้งหมด <span className="arrow_right" />
+                        </a>
+                      </Col>
+                    </Row>
                   </div>
                 </div>
               </div>
@@ -77,9 +135,22 @@ export default function Product() {
                 ))}
                 <div></div>
               </div>
-              {/* <PaginationComponent page={0} totalPages={0} handlePagination={}
-                 /> */}
-              <h5>5555</h5>
+              {listAnime?.length.toString() == entries.toString() ? (
+                <Pagination
+                  totalPages={totalPages}
+                  currentPage={page}
+                  handlePrevPage={handlePrevPage}
+                  handleNextPage={handleNextPage}
+                />
+              ) : (
+                <Pagination
+                  totalPages={totalPages}
+                  currentPage={page}
+                  handlePrevPage={handlePrevPage}
+                  handleNextPage={handleNextPage}
+                />
+              )}
+              ;
             </div>
           </div>
           <TopTen bypassImages={bypassImages} />
