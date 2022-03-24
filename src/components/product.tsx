@@ -6,7 +6,11 @@ import ListAnimeModel from "../models/listAnimeModel";
 import GalleryService from "../services/listAnimeService";
 import Pagination from "./pagination/Pagination";
 
-export default function Product() {
+interface Props {
+  local: string;
+}
+
+export default function Product({ local }: Props) {
   const [listAnime, setListAnime] = useState<ListAnimeModel[]>();
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(3);
@@ -31,7 +35,7 @@ export default function Product() {
         `${page}`,
         `${entries}`,
         "web",
-        "th_TH"
+        `${local}`
       )
         .then((res) => {
           setListAnime(res.data);

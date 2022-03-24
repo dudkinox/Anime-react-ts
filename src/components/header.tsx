@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Local from "./local";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -100,13 +102,7 @@ export default function Header() {
           </div>
           <div className="col-lg-2">
             <div className="header__right">
-              <button>
-                sdfsdf
-                {/* {language === 'en' ? 'English' : 'Danish'} */}
-              </button>
-              <a href="#" className="search-switch">
-                <span className="icon_search" />
-              </a>
+              <Local />
               <a href="/">
                 <span className="icon_profile" />
               </a>

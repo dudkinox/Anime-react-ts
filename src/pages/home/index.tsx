@@ -8,7 +8,7 @@ export default function HomePage() {
     <>
       <Loading />
       <Header />
-      <Product />
+      <Product local={"th_TH"} />
       <Footer />
     </>
   );
