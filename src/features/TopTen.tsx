@@ -6,9 +6,10 @@ import { Themes } from "../themes/color";
 
 interface TopTenProps {
   bypassImages(url: string): string;
+  local: string;
 }
 
-export default function TopTen({ bypassImages }: TopTenProps) {
+export default function TopTen({ bypassImages, local }: TopTenProps) {
   const [listAnime, setListAnime] = useState<ListAnimeModel[]>();
   const [dateNow, setDateNow] = useState<string>("");
 
@@ -21,10 +22,10 @@ export default function TopTen({ bypassImages }: TopTenProps) {
   var numeral = require("numeral");
   useEffect(() => {
     GetDataShowTen();
-  }, []);
+  }, [local]);
 
   function GetDataShowTen() {
-    GalleryService.ListAnimeService.getListAnime("1", "30", "web", "th_TH")
+    GalleryService.ListAnimeService.getListAnime("1", "30", "web", `${local}`)
       .then((res) => {
         const view = [];
         for (var i = 0; i < res.data.length; i++) {

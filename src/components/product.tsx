@@ -155,7 +155,7 @@ export default function Product({ local }: Props) {
               ;
             </div>
           </div>
-          <TopTen bypassImages={bypassImages} />
+          <TopTen bypassImages={bypassImages} local={local}/>
         </div>
       </div>
     </section>
