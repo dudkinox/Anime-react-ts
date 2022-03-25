@@ -7,9 +7,10 @@ import Pagination from "./pagination/Pagination";
 
 interface Props {
   local: string;
+  category: number;
 }
 
-export default function Product({ local }: Props) {
+export default function Product({ local, category }: Props) {
   const [listAnime, setListAnime] = useState<ListAnimeModel[]>();
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(3);
@@ -31,7 +32,8 @@ export default function Product({ local }: Props) {
 
   useEffect(() => {
     const fetchData = async () => {
-      GalleryService.ListAnimeService.getListAnime(
+      GalleryService.CategoriesAnimeService.getListAnimeCategory(
+        `${category}`,
         `${page}`,
         `${entries}`,
         "web",
@@ -46,7 +48,7 @@ export default function Product({ local }: Props) {
     };
 
     fetchData();
-  }, [page, entries, local]);
+  }, [page, entries, local, category]);
 
   const optionSelect = [
     {
@@ -81,7 +83,7 @@ export default function Product({ local }: Props) {
                       className="search-box"
                       style={{ border: "none", borderRadius: "10px" }}
                       placeholder={
-                        local == "th_TH"
+                        local === "th_TH"
                           ? "ค้นหาเรื่องที่ชื่นชอบ"
                           : "Search Movie"
                       }

@@ -6,14 +6,19 @@ import Product from "../../components/product";
 
 export default function HomePage() {
   const [language, setLanguage] = useState("th_TH");
+  const [category, setCategory] = useState(0);
 
   useEffect(() => {});
 
   return (
     <>
       <Loading />
-      <Header language={language} setLanguage={setLanguage}/>
-      <Product local={language} />
+      <Header
+        language={language}
+        setLanguage={setLanguage}
+        setCategory={setCategory}
+      />
+      <Product local={language} category={category} />
       <Footer />
     </>
   );

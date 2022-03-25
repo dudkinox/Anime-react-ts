@@ -15,7 +15,7 @@ const ListAnimeService = {
 };
 
 const CategoriesAnimeService = {
-  getListAnime: (
+  getListAnimeCategory: (
     style: string,
     page: string,
     pagesize: string,

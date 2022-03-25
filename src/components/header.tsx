@@ -1,61 +1,66 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
 interface HeaderProps {
   language: string;
   setLanguage: React.Dispatch<React.SetStateAction<string>>;
+  setCategory: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function Header({ language, setLanguage }: HeaderProps) {
-  const navigate = useNavigate();
+export default function Header({
+  language,
+  setLanguage,
+  setCategory,
+}: HeaderProps) {
   const category = [
     {
-      name: "ยาโอย",
+      name: "ทั้งหมด",
       value: 0,
     },
     {
-      name: "แฟนตาซี",
+      name: "ยาโอย",
       value: 1,
     },
     {
-      name: "ดราม่า",
+      name: "แฟนตาซี",
       value: 2,
     },
     {
-      name: "ต่อสู้",
+      name: "ดราม่า",
       value: 3,
     },
     {
-      name: "โรแมนติก",
+      name: "ต่อสู้",
       value: 4,
     },
     {
-      name: "Sci-fi/ไซ-ไฟ",
+      name: "โรแมนติก",
       value: 5,
     },
     {
-      name: "ผจญภัย",
+      name: "Sci-fi/ไซ-ไฟ",
       value: 6,
     },
     {
-      name: "ประวัติศาสตร์",
+      name: "ผจญภัย",
       value: 7,
     },
     {
-      name: "ตลก",
+      name: "ประวัติศาสตร์",
       value: 8,
     },
     {
-      name: "ชีวิตประจำวัน",
+      name: "ตลก",
       value: 9,
     },
     {
-      name: "ดนตรี",
+      name: "ชีวิตประจำวัน",
       value: 10,
     },
     {
-      name: "โรงเรียน",
+      name: "ดนตรี",
       value: 11,
+    },
+    {
+      name: "โรงเรียน",
+      value: 12,
     },
   ];
 
@@ -63,8 +68,8 @@ export default function Header({ language, setLanguage }: HeaderProps) {
     setLanguage((language) => (language === "en_EN" ? "th_TH" : "en_EN"));
   };
 
-  const goToCategory = (href: number) => {
-    navigate("categories/" + href.toString());
+  const selectCategory = (href: number) => {
+    setCategory(href);
   };
 
   return (
@@ -86,7 +91,7 @@ export default function Header({ language, setLanguage }: HeaderProps) {
                     <a href="/">Homepage</a>
                   </li>
                   <li>
-                    <a href="/categories">
+                    <a href="#เลือกหมวดหมู่">
                       หมวดหมู่ <span className="arrow_carrot-down" />
                     </a>
                     <ul className="dropdown">
@@ -94,8 +99,8 @@ export default function Header({ language, setLanguage }: HeaderProps) {
                         return (
                           <li key={index}>
                             <a
-                              href={`${item.value}`}
-                              onClick={() => goToCategory(item.value)}
+                              href={`#${item.name}`}
+                              onClick={() => selectCategory(item.value)}
                             >
                               {item.name}
                             </a>
