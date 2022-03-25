@@ -1,6 +1,12 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Header() {
+interface HeaderProps {
+  language: string;
+  setLanguage: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export default function Header({ language, setLanguage }: HeaderProps) {
   const navigate = useNavigate();
   const category = [
     {
@@ -53,6 +59,10 @@ export default function Header() {
     },
   ];
 
+  const handleOnclick = () => {
+    setLanguage((language) => (language === "en_EN" ? "th_TH" : "en_EN"));
+  };
+
   const goToCategory = (href: number) => {
     navigate("categories/" + href.toString());
   };
@@ -100,10 +110,18 @@ export default function Header() {
           </div>
           <div className="col-lg-2">
             <div className="header__right">
-              <a href="#" className="search-switch">
-                <span className="icon_search" />
-              </a>
-              <a href="./login.html">
+              <button
+                value={language}
+                onClick={handleOnclick}
+                style={{
+                  background: "transparent",
+                  color: "white",
+                  border: "none",
+                }}
+              >
+                {language === "en_EN" ? "EN" : "TH"}
+              </button>
+              <a href="/">
                 <span className="icon_profile" />
               </a>
             </div>
