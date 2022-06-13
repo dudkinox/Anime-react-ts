@@ -21,38 +21,37 @@ export default function TopTen({ bypassImages, local }: TopTenProps) {
 
   var numeral = require("numeral");
   useEffect(() => {
-    GetDataShowTen();
-  }, [local]);
-
-  function GetDataShowTen() {
-    GalleryService.ListAnimeService.getListAnime("1", "30", "web", `${local}`)
-      .then((res) => {
-        const view = [];
-        for (var i = 0; i < res.data.length; i++) {
-          var split = res.data[i].view.split(" ");
-          var check = split[0].toLowerCase();
-          var change = numeral(check);
-          const data = {
-            detail: res.data[i],
-            value: change._value,
-          };
-          view.push(data);
-        }
-        const newdata = view.sort(function (a, b) {
-          return b.value - a.value;
-        });
-        const showTen = [];
-        for (var k = 0; k < newdata.length; k++) {
-          if (showTen.length < 10) {
-            showTen.push(newdata[k].detail);
+    function GetDataShowTen() {
+      GalleryService.ListAnimeService.getListAnime("1", "30", "web", `${local}`)
+        .then((res) => {
+          const view = [];
+          for (var i = 0; i < res.data.length; i++) {
+            var split = res.data[i].view.split(" ");
+            var check = split[0].toLowerCase();
+            var change = numeral(check);
+            const data = {
+              detail: res.data[i],
+              value: change._value,
+            };
+            view.push(data);
           }
-        }
-        setListAnime(showTen);
-      })
-      .catch((e: Error) => {
-        console.log(e);
-      });
-  }
+          const newdata = view.sort(function (a, b) {
+            return b.value - a.value;
+          });
+          const showTen = [];
+          for (var k = 0; k < newdata.length; k++) {
+            if (showTen.length < 10) {
+              showTen.push(newdata[k].detail);
+            }
+          }
+          setListAnime(showTen);
+        })
+        .catch((e: Error) => {
+          console.log(e);
+        });
+    }
+    GetDataShowTen();
+  }, [local, numeral]);
 
   return (
     <div className="col-lg-4 col-md-6 col-sm-8">
@@ -90,79 +89,6 @@ export default function TopTen({ bypassImages, local }: TopTenProps) {
               </div>
             </div>
           ))}
-        </div>
-        <div className="product__sidebar__comment">
-          <div className="section-title">
-            <h5>New Comment</h5>
-          </div>
-          <div className="product__sidebar__comment__item">
-            <div className="product__sidebar__comment__item__pic">
-              <img src="img/sidebar/comment-1.jpg" alt="" />
-            </div>
-            <div className="product__sidebar__comment__item__text">
-              <ul>
-                <li>Active</li>
-                <li>Movie</li>
-              </ul>
-              <h5>
-                <a href="#">The Seven Deadly Sins: Wrath of the Gods</a>
-              </h5>
-              <span>
-                <i className="fa fa-eye" /> 19.141 Viewes
-              </span>
-            </div>
-          </div>
-          <div className="product__sidebar__comment__item">
-            <div className="product__sidebar__comment__item__pic">
-              <img src="img/sidebar/comment-2.jpg" alt="" />
-            </div>
-            <div className="product__sidebar__comment__item__text">
-              <ul>
-                <li>Active</li>
-                <li>Movie</li>
-              </ul>
-              <h5>
-                <a href="#">Shirogane Tamashii hen Kouhan sen</a>
-              </h5>
-              <span>
-                <i className="fa fa-eye" /> 19.141 Viewes
-              </span>
-            </div>
-          </div>
-          <div className="product__sidebar__comment__item">
-            <div className="product__sidebar__comment__item__pic">
-              <img src="img/sidebar/comment-3.jpg" alt="" />
-            </div>
-            <div className="product__sidebar__comment__item__text">
-              <ul>
-                <li>Active</li>
-                <li>Movie</li>
-              </ul>
-              <h5>
-                <a href="#">Kizumonogatari III: Reiket su-hen</a>
-              </h5>
-              <span>
-                <i className="fa fa-eye" /> 19.141 Viewes
-              </span>
-            </div>
-          </div>
-          <div className="product__sidebar__comment__item">
-            <div className="product__sidebar__comment__item__pic">
-              <img src="img/sidebar/comment-4.jpg" alt="" />
-            </div>
-            <div className="product__sidebar__comment__item__text">
-              <ul>
-                <li>Active</li>
-                <li>Movie</li>
-              </ul>
-              <h5>
-                <a href="#">Monogatari Series: Second Season</a>
-              </h5>
-              <span>
-                <i className="fa fa-eye" /> 19.141 Viewes
-              </span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
