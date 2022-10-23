@@ -1,9 +1,9 @@
 import { httpClient } from "../http/client";
-import ListAnimeModel from "../models/listAnimeModel";
+import { ListApiBilibili } from "../models/listAnimeModel";
 
 const CategoriesAnimeService = {
   getListAnimeCategory: () => {
-    return httpClient.get<ListAnimeModel[]>(`/category`);
+    return httpClient.get<ListApiBilibili>(`/category`);
   },
 };
 
