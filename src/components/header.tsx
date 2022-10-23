@@ -1,9 +1,4 @@
-interface HeaderProps {
-  language: string;
-  setLanguage: React.Dispatch<React.SetStateAction<string>>;
-}
-
-export default function Header({ language, setLanguage }: HeaderProps) {
+export default function Header() {
   return (
     <header className="header">
       <div className="container">
