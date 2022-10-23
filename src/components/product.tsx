@@ -7,6 +7,12 @@ export default function Product() {
   const [listAnime, setListAnime] = useState<ListApiBilibili>();
   const [search, setSearch] = useState("");
 
+  const BypassImage = (image: string) => {
+    const imageBypass = image.split("https://pic.bstarstatic.com/ogv/")[1];
+
+    return `assets/${imageBypass}`;
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       GalleryService.CategoriesAnimeService.getListAnimeCategory()
@@ -60,7 +66,7 @@ export default function Product() {
                       <div className="col-lg-4 col-md-6 col-sm-6" key="1">
                         <div className="product__item">
                           <div className="product__item__pic set-bg">
-                            <img src={item.cover} alt="" />
+                            <img src={BypassImage(item.cover)} alt="" />
                             <div className="view">
                               <i className="fa fa-eye" /> {item.view}
                             </div>
