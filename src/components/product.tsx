@@ -6,6 +6,7 @@ import GalleryService from "../services/listAnimeService";
 export default function Product() {
   const [listAnime, setListAnime] = useState<ListApiBilibili>();
   const [search, setSearch] = useState("");
+  const [refresh, setRefresh] = useState(0);
 
   const BypassImage = (image: string) => {
     const imageBypass = image.split("https://pic.bstarstatic.com/ogv/")[1];
@@ -13,19 +14,21 @@ export default function Product() {
     return `assets/${imageBypass}`;
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      GalleryService.CategoriesAnimeService.getListAnimeCategory()
-        .then((res) => {
-          setListAnime(res.data);
-        })
-        .catch((e: Error) => {
-          console.log(e);
-        });
-    };
+  const sortTopTen = () => {
+    listAnime?.data?.cards?.sort((a, b) => (a?.view > b?.view ? -1 : 1));
+    setRefresh(refresh + 1);
+    setListAnime(listAnime);
+  };
 
-    fetchData();
-  }, [search, setSearch]);
+  useEffect(() => {
+    GalleryService.CategoriesAnimeService.getListAnimeCategory()
+      .then((res) => {
+        setListAnime(res.data);
+      })
+      .catch((e: Error) => {
+        console.log(e);
+      });
+  }, []);
 
   return (
     <section className="product">
@@ -49,6 +52,13 @@ export default function Product() {
                     />
                   </div>
                 </div>
+                <div className="col-lg-4 col-md-4 col-sm-4">
+                  <div className="section-title text-center">
+                    <button className="btn btn-dark col-6" onClick={sortTopTen}>
+                      จัดอันดับ
+                    </button>
+                  </div>
+                </div>
               </div>
               <div className="row">
                 {listAnime?.data.cards
@@ -63,7 +73,10 @@ export default function Product() {
                   })
                   .map((item) => {
                     return (
-                      <div className="col-lg-4 col-md-6 col-sm-6" key="1">
+                      <div
+                        className="col-lg-4 col-md-6 col-sm-6"
+                        key={item.season_id}
+                      >
                         <div className="product__item">
                           <div className="product__item__pic set-bg">
                             <img src={BypassImage(item.cover)} alt="" />
