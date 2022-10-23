@@ -1,29 +1,16 @@
 import { useEffect, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
-import TopTen from "../features/TopTen";
 import ListAnimeModel from "../models/listAnimeModel";
 import GalleryService from "../services/listAnimeService";
-import Pagination from "./pagination/Pagination";
 
 interface Props {
   local: string;
-  category: number;
 }
 
-export default function Product({ local, category }: Props) {
+export default function Product({ local }: Props) {
   const [listAnime, setListAnime] = useState<ListAnimeModel[]>();
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(3);
   const [entries, setEntries] = useState("");
   const [query, setQuery] = useState("");
-
-  const handlePrevPage = (prevPage: number) => {
-    setPage((prevPage) => prevPage - 1);
-  };
-
-  const handleNextPage = (nextPage: number) => {
-    setPage((nextPage) => nextPage + 1);
-  };
 
   const bypassImages = (url: string) => {
     const formatUrl = url.split("https://pic.bstarstatic.com/ogv/");
@@ -32,13 +19,7 @@ export default function Product({ local, category }: Props) {
 
   useEffect(() => {
     const fetchData = async () => {
-      GalleryService.CategoriesAnimeService.getListAnimeCategory(
-        `${category}`,
-        `${page}`,
-        `${entries}`,
-        "web",
-        `${local}`
-      )
+      GalleryService.CategoriesAnimeService.getListAnimeCategory()
         .then((res) => {
           setListAnime(res.data);
         })
@@ -48,7 +29,7 @@ export default function Product({ local, category }: Props) {
     };
 
     fetchData();
-  }, [page, entries, local, category]);
+  }, [entries, local]);
 
   const optionSelect = [
     {
@@ -66,7 +47,7 @@ export default function Product({ local, category }: Props) {
   ];
 
   return (
-    <section className="product spad">
+    <section className="product">
       <div className="container">
         <div className="row">
           <div className="col-lg-8">
@@ -122,69 +103,33 @@ export default function Product({ local, category }: Props) {
                 </div>
               </div>
               <div className="row">
-                {listAnime
-                  ?.filter((post) => {
-                    if (query === "") {
-                      return post;
-                    } else if (
-                      post.title.toLowerCase().includes(query.toLowerCase())
-                    ) {
-                      return post;
-                    }
-                  })
-                  .map((post, index) => (
-                    <div className="col-lg-4 col-md-6 col-sm-6" key={index}>
-                      <div className="product__item">
-                        <div
-                          className="product__item__pic set-bg"
-                          data-setbg=""
-                        >
-                          <img src={bypassImages(post.cover)} alt="" />
-                          <div className="ep">18 / 18</div>
-                          <div className="view">
-                            <i className="fa fa-eye" /> {post.view}
-                          </div>
-                        </div>
-                        <div className="product__item__text">
-                          <ul>
-                            <li>
-                              {post.index_show === "เสร็จแล้ว"
-                                ? "จบแล้ว"
-                                : post.index_show}
-                            </li>
-                          </ul>
-                          <h5>
-                            <a
-                              href={`https://www.bilibili.tv/th/play/${post.season_id}`}
-                            >
-                              {post.title}
-                            </a>
-                          </h5>
-                        </div>
+                <div className="col-lg-4 col-md-6 col-sm-6" key="1">
+                  <div className="product__item">
+                    <div className="product__item__pic set-bg">
+                      <img src="https://picsum.photos/200/300" alt="" />
+                      <div className="ep">18 / 18</div>
+                      <div className="view">
+                        <i className="fa fa-eye" /> 1121212
                       </div>
                     </div>
-                  ))}
+                    <div className="product__item__text">
+                      <ul>
+                        <li>จบแล้ว</li>
+                      </ul>
+                      <h5>
+                        <a
+                          href={`https://www.bilibili.tv/th/play/post.season_id`}
+                        >
+                          "post.title"
+                        </a>
+                      </h5>
+                    </div>
+                  </div>
+                </div>
                 <div></div>
               </div>
-              {listAnime?.length.toString() === entries.toString() ? (
-                <Pagination
-                  totalPages={totalPages}
-                  currentPage={page}
-                  handlePrevPage={handlePrevPage}
-                  handleNextPage={handleNextPage}
-                />
-              ) : (
-                <Pagination
-                  totalPages={totalPages}
-                  currentPage={page}
-                  handlePrevPage={handlePrevPage}
-                  handleNextPage={handleNextPage}
-                />
-              )}
-              ;
             </div>
           </div>
-          <TopTen bypassImages={bypassImages} local={local} />
         </div>
       </div>
     </section>
